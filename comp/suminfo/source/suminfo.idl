@@ -1,0 +1,107 @@
+// SumInfo.idl : IDL source for ASPSum.dll
+//
+// Copyright (C) 1996 Microsoft Corporation
+// All rights reserved.
+//
+// ckindel  4/3/97 Wrote it.
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (SumInfo.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(C874F930-D6C8-11D0-8A74-00C0F00910F9),
+		dual,
+		helpstring("ISumInfo Interface"),
+		pointer_default(unique)
+	]
+	interface ISumInfo : IDispatch
+	{
+		[id(1), helpstring("Attaches the object to a stuctured storage file.")] HRESULT SetFile([in]BSTR FileName);
+		[id(2), helpstring("Writes the summary information to the Response object in HTML.")] HRESULT Write();
+		[propget, id(3), helpstring("Output style (0 = default; 1=full; -1=debug)")] HRESULT Style([out, retval] long *pVal);
+		[propput, id(3), helpstring("Output style (0 = default; 1=full; -1=debug)")] HRESULT Style([in] long newVal);
+		[propget, id(4), helpstring("URL to file")] HRESULT URL([out, retval] VARIANT *pVal);
+		[propget, id(5), helpstring("Document Title")] HRESULT Title([out, retval] VARIANT *pVal);
+		[propget, id(6), helpstring("property Author")] HRESULT Author([out, retval] VARIANT *pVal);
+		[propget, id(7), helpstring("property Subject")] HRESULT Subject([out, retval] VARIANT *pVal);
+		[propget, id(8), helpstring("property Application")] HRESULT Application([out, retval] VARIANT *pVal);
+		[propget, id(9), helpstring("property Keywords")] HRESULT Keywords([out, retval] VARIANT *pVal);
+		[propget, id(10), helpstring("property Comments")] HRESULT Comments([out, retval] VARIANT *pVal);
+		[propget, id(11), helpstring("property Template")] HRESULT Template([out, retval] VARIANT *pVal);
+		[propget, id(12), helpstring("property LastSavedBy")] HRESULT LastSavedBy([out, retval] VARIANT *pVal);
+		[propget, id(13), helpstring("property RevNumber")] HRESULT RevNumber([out, retval] VARIANT *pVal);
+		[propget, id(14), helpstring("property EditTime")] HRESULT EditTime([out, retval] VARIANT *pVal);
+		[propget, id(15), helpstring("property LastPrinted")] HRESULT LastPrinted([out, retval] VARIANT *pVal);
+		[propget, id(16), helpstring("property CreateTime")] HRESULT CreateTime([out, retval] VARIANT *pVal);
+		[propget, id(17), helpstring("property LastSaveTime")] HRESULT LastSaveTime([out, retval] VARIANT *pVal);
+		[propget, id(18), helpstring("property PageCount")] HRESULT PageCount([out, retval] VARIANT *pVal);
+		[propget, id(19), helpstring("property WordCount")] HRESULT WordCount([out, retval] VARIANT *pVal);
+		[propget, id(20), helpstring("property CharCount")] HRESULT CharCount([out, retval] VARIANT *pVal);
+		[propget, id(21), helpstring("property ThumbNail")] HRESULT ThumbNail([out, retval] LPUNKNOWN *pVal);
+		[propget, id(22), helpstring("property Category")] HRESULT Category([out, retval] VARIANT *pVal);
+		[propget, id(23), helpstring("property PresentationTarget")] HRESULT PresentationTarget([out, retval] VARIANT *pVal);
+		[propget, id(24), helpstring("property Bytes")] HRESULT Bytes([out, retval] VARIANT *pVal);
+		[propget, id(25), helpstring("property Lines")] HRESULT Lines([out, retval] VARIANT *pVal);
+		[propget, id(26), helpstring("property Paragraphs")] HRESULT Paragraphs([out, retval] VARIANT *pVal);
+		[propget, id(27), helpstring("property Slides")] HRESULT Slides([out, retval] VARIANT *pVal);
+		[propget, id(28), helpstring("property Notes")] HRESULT Notes([out, retval] VARIANT *pVal);
+		[propget, id(29), helpstring("property HiddenSlides")] HRESULT HiddenSlides([out, retval] VARIANT *pVal);
+		[propget, id(30), helpstring("property MMClips")] HRESULT MMClips([out, retval] VARIANT *pVal);
+		[propget, id(31), helpstring("property ScaleCrop")] HRESULT ScaleCrop([out, retval] VARIANT *pVal);
+		[propget, id(32), helpstring("property HeadingPairs")] HRESULT HeadingPairs([out, retval] VARIANT *pVal);
+		[propget, id(33), helpstring("property TitlesOfParts")] HRESULT TitlesOfParts([out, retval] VARIANT *pVal);
+		[propget, id(34), helpstring("property Manager")] HRESULT Manager([out, retval] VARIANT *pVal);
+		[propget, id(35), helpstring("property Company")] HRESULT Company([out, retval] VARIANT *pVal);
+		[propget, id(36), helpstring("property LinksUpToDate")] HRESULT LinksUpToDate([out, retval] VARIANT *pVal);
+	};
+	[
+		object,
+		uuid(4DD5ECD0-D6C9-11D0-8A74-00C0F00910F9),
+		dual,
+		helpstring("ISumInfos Interface"),
+		pointer_default(unique)
+	]
+	interface ISumInfos : IDispatch
+	{
+		[propget, id(1), helpstring("Indicates the number of items in the enueration")] HRESULT Count([out, retval] long *pVal);
+		[propget, id(DISPID_VALUE), helpstring("Returns a specific member of the enumeration")] HRESULT Item([in] VARIANT Index, [out, retval] ISumInfo* *pVal);
+		[id(3), helpstring("method SetFileSpec")] HRESULT SetFileSpec(BSTR Path, BSTR FileSpec);
+		[propget, id(4), helpstring("property Style")] HRESULT Style([out, retval] long *pVal);
+		[propput, id(4), helpstring("property Style")] HRESULT Style([in] long newVal);
+		[id(5), helpstring("method Write")] HRESULT Write();
+		[id(DISPID_NEWENUM), helpstring("method _NewEnum"), hidden] HRESULT _NewEnum([out,retval]IUnknown** pRet);
+	};
+	
+[
+	uuid(4A457170-D6C8-11D0-8A74-00C0F00910F9),
+	version(1.0),
+	helpstring("IISSample SummaryInfo Object Library")
+]
+library SummaryInfo
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(69E3ECA0-D6CA-11D0-8A74-00C0F00910F9),
+		helpstring("ASP Summary Information Object")
+	]
+	coclass SumInfo
+	{
+		[default] interface ISumInfo;
+	};
+	[
+		uuid(6A593190-D6C7-11D0-8A74-00C0F00910F9),
+		helpstring("ASP Summary Information File Enumerator Object")
+	]
+	coclass SumInfos
+	{
+		[default] interface ISumInfos;
+	};
+	
+};

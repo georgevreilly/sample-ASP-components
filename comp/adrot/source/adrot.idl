@@ -1,0 +1,45 @@
+// AdRot.idl : IDL source for AdRot.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (AdRot.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(78FFAFF1-E0E1-11D0-8A81-00C0F00910F9),
+		dual,
+		helpstring("IAdRotator Interface"),
+		pointer_default(unique)
+	]
+	interface IAdRotator : IDispatch
+	{
+		[propget, id(1), helpstring("property Clickable")] HRESULT Clickable([out, retval] BOOL *pVal);
+		[propput, id(1), helpstring("property Clickable")] HRESULT Clickable([in] BOOL newVal);
+		[propget, id(3), helpstring("property Border")] HRESULT Border([out, retval] short *pVal);
+		[propput, id(3), helpstring("property Border")] HRESULT Border([in] short newVal);
+		[propget, id(4), helpstring("property TargetFrame")] HRESULT TargetFrame([out, retval] BSTR *pVal);
+		[propput, id(4), helpstring("property TargetFrame")] HRESULT TargetFrame([in] BSTR newVal);
+		[propget, id(5), helpstring("property GetAdvertisement")] HRESULT GetAdvertisement(BSTR, [out, retval] BSTR *pVal);
+	};
+[
+	uuid(78FFAFE4-E0E1-11D0-8A81-00C0F00910F9),
+	version(1.0),
+	helpstring("ASP AdRot Type Library")
+]
+library ADROTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(78FFAFF2-E0E1-11D0-8A81-00C0F00910F9),
+		helpstring("AdRotator Class")
+	]
+	coclass AdRotator
+	{
+		[default] interface IAdRotator;
+	};
+};

@@ -1,0 +1,25 @@
+HKCR
+{
+	IISSample.AdRotator.1 = s 'AdRotator Class'
+	{
+		CLSID = s '{78FFAFF2-E0E1-11D0-8A81-00C0F00910F9}'
+	}
+	IISSample.AdRotator = s 'AdRotator Class'
+	{
+		CLSID = s '{78FFAFF2-E0E1-11D0-8A81-00C0F00910F9}'
+		CurVer = s 'IISSample.AdRotator.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {78FFAFF2-E0E1-11D0-8A81-00C0F00910F9} = s 'AdRotator Class'
+		{
+			ProgID = s 'IISSample.AdRotator.1'
+			VersionIndependentProgID = s 'IISSample.AdRotator'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

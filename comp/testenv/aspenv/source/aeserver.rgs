@@ -1,0 +1,25 @@
+HKCR
+{
+	AspEnv.AeServer.1 = s 'AeServer Class'
+	{
+		CLSID = s '{A0B6D573-2F7D-11D1-8AF8-00C0F00910F9}'
+	}
+	AspEnv.AeServer = s 'AeServer Class'
+	{
+		CLSID = s '{A0B6D573-2F7D-11D1-8AF8-00C0F00910F9}'
+		CurVer = s 'AspEnv.AeServer.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A0B6D573-2F7D-11D1-8AF8-00C0F00910F9} = s 'AeServer Class'
+		{
+			ProgID = s 'AspEnv.AeServer.1'
+			VersionIndependentProgID = s 'AspEnv.AeServer'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

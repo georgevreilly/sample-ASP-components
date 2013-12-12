@@ -1,0 +1,46 @@
+// TextFmt.idl : IDL source for TextFmt.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (TextFmt.tlb) and marshalling code.
+
+    [
+        object,
+        uuid(328078E4-7E3D-11D0-8AF8-00C0F00AE35A),
+        dual,
+        helpstring("ITextFmt Interface"),
+        pointer_default(unique)
+    ]
+    interface ITextFmt : IDispatch
+    {
+        import "oaidl.idl";
+
+        [helpstring("Return Information about this component")]
+        HRESULT About([out, retval] BSTR *pstrAbout);
+
+        [helpstring("Wrap text from a file, sending the output directly to the client.")]
+        HRESULT WrapTextFromFile([in] BSTR strFile, [in] int cchColumnWidth);
+
+    };
+
+
+
+[
+    uuid(328078E2-7E3D-11D0-8AF8-00C0F00AE35A),
+    version(1.0),
+    helpstring("IISSample Text Formatter Object Library")
+]
+library TextFormatter
+{
+    importlib("stdole32.tlb");
+
+    [
+        uuid(328078E8-7E3D-11D0-8AF8-00C0F00AE35A),
+        helpstring("CTextFmt Class")
+    ]
+    coclass CTextFmt
+    {
+        [default] interface ITextFmt;
+    };
+
+};

@@ -1,0 +1,26 @@
+HKCR
+{
+	IISSample.SummaryInfo.1 = s 'ASP Summary Information Object 1.0'
+	{
+		CLSID = s '{69E3ECA0-D6CA-11D0-8A74-00C0F00910F9}'
+	}
+	IISSample.SummaryInfo = s 'ASP Summary Information Object 1.0'
+	{
+		CurVer = s 'IISSample.SummaryInfo.1'
+		CLSID = s '{69E3ECA0-D6CA-11D0-8A74-00C0F00910F9}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {69E3ECA0-D6CA-11D0-8A74-00C0F00910F9} = s 'ASP Summary Information Object 1.0'
+		{
+			ProgID = s 'IISSample.SummaryInfo.1'
+			VersionIndependentProgID = s 'IISSample.SummaryInfo'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+            TypeLib = s '{4A457170-D6C8-11D0-8A74-00C0F00910F9}'
+		}
+	}
+}

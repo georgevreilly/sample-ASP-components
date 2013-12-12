@@ -1,0 +1,31 @@
+(to view this file, turn on wordwrap in notepad)
+The test environment consists of two parts
+1) The AspEnv.dll which supplies the IObjectContext and server instrinsics
+2) The TestApp.exe which will stress components.
+
+The two pieces are totally independent (you don't need to use one to use the other)
+
+AspEnv.dll
+In order to use aspenv.dll you must do 2 things
+1) you must put AspEnv.dll somewhere in your path (so it can be loaded) and put the aspenv.ini file in the same directory.
+2) Link you component with aspenv.lib instead of mtx.lib (keep mtxguid.lib).
+
+Now when you call GetObjectContext, you will get back a fake object context that can return simulated server intrinics (via the usally methods).  The behavior of the server intrinsics is determine by the AspEnv.ini file.  For example, IServer::MapPath will return a path based on MapPathBase in the [Server] section.
+
+TestApp.exe
+The test app also works using ini files.  This time, one for each component you want to test.  The ini files should be kept in the comp/ directory beneath the testapp.exe.  Each ini file describes how to test the component and what methods to test.  An example follows:
+
+[class]
+ProgID="foo.bar"
+scope=application ; or session or page
+
+[method1]
+type=Get ; or put or method
+BSTR="hello"	; first parameter
+int=78		; second parameter
+
+The scope determines how the object is tested:
+page:	an instance is created, all methods are called, and the instance is destroyed
+session: one instance per thread, it exists until all iterations have been run, then destroyed
+application: one instance for all threads.
+

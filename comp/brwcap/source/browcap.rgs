@@ -1,0 +1,25 @@
+HKCR
+{
+	IISSample.BrowserCap.1 = s 'BrowserCap Class'
+	{
+		CLSID = s '{78FFB01F-E0E1-11D0-8A81-00C0F00910F9}'
+	}
+	IISSample.BrowserCap = s 'BrowserCap Class'
+	{
+		CLSID = s '{78FFB01F-E0E1-11D0-8A81-00C0F00910F9}'
+		CurVer = s 'IISSample.BrowserCap.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {78FFB01F-E0E1-11D0-8A81-00C0F00910F9} = s 'BrowserCap Class'
+		{
+			ProgID = s 'IISSample.BrowserCap.1'
+			VersionIndependentProgID = s 'IISSample.BrowserCap'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

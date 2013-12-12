@@ -1,0 +1,46 @@
+// Tracer.idl : IDL source for Tracer.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Tracer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(034E4AC0-2544-11D1-8AE3-00C0F00910F9),
+		dual,
+		helpstring("ITracer Interface"),
+		pointer_default(unique)
+	]
+	interface ITracer : IDispatch
+	{
+		//Standard Server Side Component Methods
+		[propget, id(1), helpstring("property Name")] HRESULT Name([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Name")] HRESULT Name([in] BSTR newVal);
+		[id(2), helpstring("method TimerStart")] HRESULT TimerStart();
+		[id(3), helpstring("method TimerTotal")] HRESULT TimerTotal(BSTR bstrLabel);
+		[id(4), helpstring("method TimerSplit")] HRESULT TimerSplit(BSTR bstrLabel);
+		[id(5), helpstring("method Trace")] HRESULT Trace(BSTR bstrTrace);
+		[id(6), helpstring("method TimerStop")] HRESULT TimerStop();
+	};
+[
+	uuid(034E4AB3-2544-11D1-8AE3-00C0F00910F9),
+	version(1.0),
+	helpstring("IISSample Tracer Object Library")
+]
+library Tracer
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(034E4AC1-2544-11D1-8AE3-00C0F00910F9),
+		helpstring("Tracer Class")
+	]
+	coclass Tracer
+	{
+		[default] interface ITracer;
+	};
+};

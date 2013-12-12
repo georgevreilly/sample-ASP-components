@@ -1,0 +1,21 @@
+HEIGHT 100
+WIDTH 200
+BORDER 2
+REDIRECT redirect_text
+VSPACE 3
+HSPACE 4
+*
+climbing.gif
+store.html
+climbing stuff
+1
+
+camping.gif
+store.html
+camping stuff
+2
+
+clothing.gif
+store.html
+clothing stuff
+1

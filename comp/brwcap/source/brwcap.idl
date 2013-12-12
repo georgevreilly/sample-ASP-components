@@ -1,0 +1,40 @@
+// BrwCap.idl : IDL source for BrwCap.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (BrwCap.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(78FFB01E-E0E1-11D0-8A81-00C0F00910F9),
+		dual,
+		helpstring("IBrowserCap Interface"),
+		pointer_default(unique)
+	]
+	interface IBrowserCap : IDispatch
+	{
+		//Standard Server Side Component Methods
+		[propget, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value(BSTR, [out, retval] VARIANT *pVal);
+	};
+[
+	uuid(78FFB011-E0E1-11D0-8A81-00C0F00910F9),
+	version(1.0),
+	helpstring("BrwCap 1.0 Type Library")
+]
+library BRWCAPLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(78FFB01F-E0E1-11D0-8A81-00C0F00910F9),
+		helpstring("BrowserCap Class")
+	]
+	coclass BrowserCap
+	{
+		[default] interface IBrowserCap;
+	};
+};

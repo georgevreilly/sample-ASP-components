@@ -1,0 +1,48 @@
+// NxtLnk.idl : IDL source for NxtLnk.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (NxtLnk.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(253413CB-E71F-11D0-8A84-00C0F00910F9),
+		dual,
+		helpstring("INextLink Interface"),
+		pointer_default(unique)
+	]
+	interface INextLink : IDispatch
+	{
+		//Standard Server Side Component Methods
+		[propget, id(1), helpstring("property GetNextURL")] HRESULT GetNextURL(BSTR, [out, retval] BSTR *pVal);
+		[propget, id(2), helpstring("property GetNextDescription")] HRESULT GetNextDescription(BSTR bstrLinkFile, [out, retval] BSTR *pVal);
+		[propget, id(3), helpstring("property GetPreviousURL")] HRESULT GetPreviousURL(BSTR bstrLinkFile, [out, retval] BSTR *pVal);
+		[propget, id(4), helpstring("property GetPreviousDescription")] HRESULT GetPreviousDescription(BSTR bstrLinkFile, [out, retval] BSTR *pVal);
+		[propget, id(5), helpstring("property GetNthURL")] HRESULT GetNthURL(BSTR bstrLinkFile, int nIndex, [out, retval] BSTR *pVal);
+		[propget, id(6), helpstring("property GetNthDescription")] HRESULT GetNthDescription(BSTR bstrLinkFile, int nIndex, [out, retval] BSTR *pVal);
+		[propget, id(7), helpstring("property GetListCount")] HRESULT GetListCount(BSTR bstrLinkFile, [out, retval] int *pVal);
+		[propget, id(8), helpstring("property GetListIndex")] HRESULT GetListIndex(BSTR bstrLinkFile, [out, retval] int *pVal);
+		[propget, id(9), helpstring("property About")] HRESULT About([out, retval] BSTR *pVal);
+	};
+[
+	uuid(253413BE-E71F-11D0-8A84-00C0F00910F9),
+	version(1.0),
+	helpstring("NxtLnk 1.0 Type Library")
+]
+library NXTLNKLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(253413CC-E71F-11D0-8A84-00C0F00910F9),
+		helpstring("NextLink Class")
+	]
+	coclass NextLink
+	{
+		[default] interface INextLink;
+	};
+};

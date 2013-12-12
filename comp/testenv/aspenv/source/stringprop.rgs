@@ -1,0 +1,24 @@
+HKCR
+{
+	AspEnv.StringProp.1 = s 'StringProp Class'
+	{
+		CLSID = s '{F0C1B3E6-35D3-11D1-8AFD-00C0F00910F9}'
+	}
+	AspEnv.StringProp = s 'StringProp Class'
+	{
+		CurVer = s 'AspEnv.StringProp.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F0C1B3E6-35D3-11D1-8AFD-00C0F00910F9} = s 'StringProp Class'
+		{
+			ProgID = s 'AspEnv.StringProp.1'
+			VersionIndependentProgID = s 'AspEnv.StringProp'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

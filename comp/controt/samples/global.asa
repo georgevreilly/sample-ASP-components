@@ -1,0 +1,4 @@
+<!-- global.asa for Content Rotator example -->
+<OBJECT RUNAT=Server SCOPE=Application ID=ContRot ProgID="IISSample.ContentRotator">
+</OBJECT>
+

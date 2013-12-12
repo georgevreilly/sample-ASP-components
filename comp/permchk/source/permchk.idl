@@ -1,0 +1,42 @@
+// PermChk.idl : IDL source for PermChk.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (PermChk.tlb) and marshalling code.
+
+    [
+        object,
+        uuid(E190114E-6EFB-11D0-8B3B-00C04FC324A4),
+        dual,
+        helpstring("IPermissionChecker Interface"),
+        pointer_default(unique)
+    ]
+    interface IPermissionChecker : IDispatch
+    {
+        import "oaidl.idl";
+
+        [id(3), helpstring("check file access permission")]
+        HRESULT HasAccess([in] BSTR bstrLocalUrl,
+                          [out, retval] VARIANT_BOOL* pfRetVal);
+    };
+
+[
+    uuid(E190114C-6EFB-11D0-8B3B-00C04FC324A4),
+    version(1.0),
+    helpstring("IISSample Permission Checker Object Library")
+]
+
+library PermissionChecker
+{
+    importlib("stdole32.tlb");
+
+    [
+        uuid(E1901152-6EFB-11D0-8B3B-00C04FC324A4),
+        helpstring("PermissionChecker Class")
+    ]
+    coclass CPermissionChecker
+    {
+        [default] interface IPermissionChecker;
+    };
+
+};

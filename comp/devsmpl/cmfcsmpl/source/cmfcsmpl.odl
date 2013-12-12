@@ -1,0 +1,42 @@
+// CMFCSmpl.odl : type library source for CMFCSmpl.dll
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (CMFCSmpl.tlb).
+
+[ uuid(E9759CC3-698C-11D0-8AE3-00C0F00AE35A), version(1.0) ]
+library CMFCSmpl
+{
+    importlib("stdole32.tlb");
+    
+
+    //  Primary dispatch interface for CSimple
+    
+    [ uuid(E9759CC6-698C-11D0-8AE3-00C0F00AE35A) ]
+    dispinterface ISimple
+    {
+        properties:
+            // NOTE - ClassWizard will maintain property information here.
+            //    Use extreme caution when editing this section.
+            //{{AFX_ODL_PROP(CSimple)
+            [id(1)] BSTR MyProperty;
+            //}}AFX_ODL_PROP
+            
+        methods:
+            // NOTE - ClassWizard will maintain method information here.
+            //    Use extreme caution when editing this section.
+            //{{AFX_ODL_METHOD(CSimple)
+            [id(2)] BSTR MyMethod(BSTR ptszIn);
+            //}}AFX_ODL_METHOD
+
+    };
+
+    //  Class information for CSimple
+
+    [ uuid(E9759CC7-698C-11D0-8AE3-00C0F00AE35A) ]
+    coclass Simple
+    {
+        [default] dispinterface ISimple;
+    };
+
+    //{{AFX_APPEND_ODL}}
+};

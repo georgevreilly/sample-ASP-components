@@ -1,0 +1,46 @@
+OBJECT = ContRot
+SHARED_H = mydebug.h context.h monitor.h lock.h refcount.h refptr.h
+SHARED_S = context.cpp mem.cpp monitor.cpp
+
+all: ansi
+
+ansi ansi-r:
+    - del Release\regsvr32.trg
+    $(MAKE) -$(MAKEFLAGS) -f $(OBJECT).mak \
+	CFG="$(OBJECT) - Win32 Release" \
+	$(OBJECT).tlb all
+
+ansi-d:
+    - del Debug\regsvr32.trg
+    $(MAKE) -$(MAKEFLAGS) -f $(OBJECT).mak \
+	CFG="$(OBJECT) - Win32 Debug" \
+	$(OBJECT).tlb all
+
+unicode unicode-r:
+    - del ReleaseU\regsvr32.trg
+    $(MAKE) -$(MAKEFLAGS) -f $(OBJECT).mak \
+	CFG="$(OBJECT) - Win32 Unicode Release" \
+	$(OBJECT).tlb all
+
+unicode-d:
+    - del DebugU\regsvr32.trg
+    $(MAKE) -$(MAKEFLAGS) -f $(OBJECT).mak \
+	CFG="$(OBJECT) - Win32 Unicode Debug" \
+	$(OBJECT).tlb all
+
+clean:
+    - @rmdir /s /q Debug Release DebugU ReleaseU
+    - @del $(OBJECT).h $(OBJECT)_i.c $(OBJECT)_p.c $(OBJECT).aps $(OBJECT).tlb $(OBJECT).plg
+
+cpyshared:
+    @for %%i in ( $(SHARED_H) ) do \
+        @copy ..\..\shared\inc\%%i .
+    @for %%i in ( $(SHARED_S) ) do \
+        @copy ..\..\shared\source\%%i .
+
+delshared:
+    @for %%i in ( $(SHARED_H) ) do \
+        @del %%i
+    @for %%i in ( $(SHARED_S) ) do \
+        @del %%i
+

@@ -1,0 +1,25 @@
+HKCR
+{
+	AspEnv.AeObjectContext.1 = s 'AeObjectContext Class'
+	{
+		CLSID = s '{A0B6D56E-2F7D-11D1-8AF8-00C0F00910F9}'
+	}
+	AspEnv.AeObjectContext = s 'AeObjectContext Class'
+	{
+		CLSID = s '{A0B6D56E-2F7D-11D1-8AF8-00C0F00910F9}'
+		CurVer = s 'AspEnv.AeObjectContext.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A0B6D56E-2F7D-11D1-8AF8-00C0F00910F9} = s 'AeObjectContext Class'
+		{
+			ProgID = s 'AspEnv.AeObjectContext.1'
+			VersionIndependentProgID = s 'AspEnv.AeObjectContext'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

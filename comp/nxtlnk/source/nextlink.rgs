@@ -1,0 +1,25 @@
+HKCR
+{
+	IISSample.NextLink.1 = s 'NextLink Class'
+	{
+		CLSID = s '{253413CC-E71F-11D0-8A84-00C0F00910F9}'
+	}
+	IISSample.NextLink = s 'NextLink Class'
+	{
+		CLSID = s '{253413CC-E71F-11D0-8A84-00C0F00910F9}'
+		CurVer = s 'IISSample.NextLink.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {253413CC-E71F-11D0-8A84-00C0F00910F9} = s 'NextLink Class'
+		{
+			ProgID = s 'IISSample.NextLink.1'
+			VersionIndependentProgID = s 'IISSample.NextLink'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

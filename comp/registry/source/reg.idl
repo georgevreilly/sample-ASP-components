@@ -1,0 +1,185 @@
+// Reg.idl : IDL source for Reg.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Reg.tlb) and marshalling code.
+
+////////////////////////////////////////////////////////////////////////
+// IRegObj
+
+    [
+        object,
+        version(1.2),
+        uuid(9C3558B4-4175-11D0-926E-00AA00B91D12),
+        dual,
+        helpstring("IRegObj Interface"),
+        pointer_default(unique),
+        oleautomation
+    ]
+    interface IRegObj : IDispatch
+    {
+        import "oaidl.idl";
+
+        [id(1), helpstring("Get a registry key's value")]
+        HRESULT Get([in] BSTR bstrRegFullKeyValuename,
+                    [out, retval] VARIANT* pvtRetVal);
+
+        [id(2), helpstring("Get and expand a registry key's value")]
+        HRESULT GetExpand([in] BSTR bstrRegFullKeyValuename,
+                          [out, retval] VARIANT* pvtRetVal);
+
+        [id(3), helpstring("Set a registry key's value")]
+        HRESULT Set([in] BSTR bstrRegFullKeyValuename,
+                    [in] VARIANT vtValue,
+                    [in, optional] VARIANT_BOOL fFlush);
+
+        [id(4), helpstring("Set a registry key's value as REG_EXPAND_SZ")]
+        HRESULT SetExpand([in] BSTR bstrRegFullKeyValuename,
+                          [in] BSTR bstrValue,
+                          [in, optional] VARIANT_BOOL fFlush);
+
+        [id(5), helpstring("Delete a registry key and all of its subkeys")]
+        HRESULT DeleteKey([in] BSTR bstrRegFullKeyname,
+                          [in, optional] VARIANT_BOOL fFlush);
+
+        [id(6), helpstring("Remove a named value from a registry key")]
+        HRESULT DeleteValue([in] BSTR bstrRegFullKeyValuename,
+                            [in, optional] VARIANT_BOOL fFlush);
+
+        [id(7), helpstring("Copy a registry key and all subkeys and values")]
+        HRESULT CopyKey([in] BSTR bstrRegFullKeynameSource,
+                        [in] BSTR bstrRegFullKeynameDest,
+                        [in, optional] VARIANT_BOOL fFlush);
+
+        [id(8), helpstring("Expand a string containing environment variables")]
+        HRESULT ExpandString([in] BSTR bstr,
+                             [out, retval] BSTR* pbstrRetVal);
+
+        [id(9), helpstring("Is key already present in the registry?")]
+        HRESULT KeyExists([in] BSTR bstrRegFullKeyname,
+                          [out, retval] VARIANT_BOOL* pfRetVal);
+
+        [id(10), helpstring("Return the type of a registry value")]
+        HRESULT ValueType([in] BSTR bstrRegFullKeyValuename,
+                          [out, retval] BSTR* pbstrRetVal);
+
+        [id(11), helpstring("Return a collection of a key's subkeys")]
+        HRESULT SubKeys([in] BSTR bstrRegFullKeyname,
+                        [out, retval] VARIANT* pvtRetVal);
+
+        [id(12), helpstring("Return a collection of a key's values")]
+        HRESULT Values([in] BSTR bstrRegFullKeyname,
+                       [out, retval] VARIANT* pvtRetVal);
+
+    };
+
+////////////////////////////////////////////////////////////////////////
+// IRegSubKeysCollection
+
+    [
+        object,
+        version(1.0),
+        uuid(12709b00-bdc0-11d0-8b43-00c0f00ae35a),
+        dual,
+        helpstring("IRegSubKeysCollection Interface"),
+        pointer_default(unique),
+        oleautomation
+    ]
+    interface IRegSubKeysCollection : IDispatch
+    {
+        import "oaidl.idl";
+
+        [propget, id(DISPID_VALUE),
+         helpstring("Given an index, returns an item in the collection.")]
+        HRESULT Item([in] VARIANT vtIndex,
+                     [out, retval] VARIANT* pvtRetVal);
+
+        [propget, helpstring("Returns number of items in collection.")]
+        HRESULT Count([out, retval] long* plRetVal);
+
+        [propget, restricted, id(DISPID_NEWENUM),	// Must be propget. 
+		 helpstring("returns an enumerator for the collection.")]
+		HRESULT _NewEnum([out, retval] IUnknown** punkRetVal);	
+    };
+
+////////////////////////////////////////////////////////////////////////
+// IRegValue
+
+    [
+        object,
+        version(1.0),
+        uuid(12709b01-bdc0-11d0-8b43-00c0f00ae35a),
+        dual,
+        helpstring("IRegValue Interface"),
+        pointer_default(unique),
+        oleautomation
+    ]
+    interface IRegValue : IDispatch
+    {
+        import "oaidl.idl";
+
+        [propget, id(DISPID_VALUE),  // default 'value' property
+         helpstring("Returns the name of a collection element.")]
+        HRESULT Name([out,retval] BSTR* pbstrRetVal);
+
+        [propget, id(1),
+         helpstring("Returns the value of a collection element.")]
+        HRESULT Value([out, retval] VARIANT* pvtRetVal);
+    };
+
+////////////////////////////////////////////////////////////////////////
+// IRegValuesCollection
+
+    [
+        object,
+        version(1.0),
+        uuid(12709b02-bdc0-11d0-8b43-00c0f00ae35a),
+        dual,
+        helpstring("IRegValuesCollection Interface"),
+        pointer_default(unique),
+        oleautomation
+    ]
+    interface IRegValuesCollection : IDispatch
+    {
+        import "oaidl.idl";
+
+        [propget, id(DISPID_VALUE),
+         helpstring("Given an index, returns an item in the collection.")]
+        HRESULT Item([in] VARIANT vtIndex,
+                     [out, retval] VARIANT* pvtRetVal);
+
+        [propget, helpstring("Returns number of items in collection.")]
+        HRESULT Count([out, retval] long* plRetVal);
+
+        [propget, restricted, id(DISPID_NEWENUM),	// Must be propget. 
+		 helpstring("returns an enumerator for the collection.")]
+		HRESULT _NewEnum([out, retval] IUnknown** punkRetVal);	
+    };
+
+////////////////////////////////////////////////////////////////////////
+// RegistryTypeLibrary
+
+[
+    uuid(9C3558B2-4175-11D0-926E-00AA00B91D12),
+    version(1.2),
+    helpstring("IISSample Registry Accesss Object Library")
+]
+library RegistryAccess
+{
+    importlib("stdole32.tlb");
+
+    interface IRegObj;
+    interface IRegSubKeysCollection;
+    interface IRegValue;
+    interface IRegValuesCollection;
+
+    [
+        uuid(9C3558B8-4175-11D0-926E-00AA00B91D12),
+        helpstring("RegObj Class")
+    ]
+    coclass CRegObj
+    {
+        [default] interface IRegObj;
+    };
+
+};

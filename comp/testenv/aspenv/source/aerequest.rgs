@@ -1,0 +1,24 @@
+HKCR
+{
+	AspEnv.AeRequest.1 = s 'AeRequest Class'
+	{
+		CLSID = s '{F0C1B3E4-35D3-11D1-8AFD-00C0F00910F9}'
+	}
+	AspEnv.AeRequest = s 'AeRequest Class'
+	{
+		CurVer = s 'AspEnv.AeRequest.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F0C1B3E4-35D3-11D1-8AFD-00C0F00910F9} = s 'AeRequest Class'
+		{
+			ProgID = s 'AspEnv.AeRequest.1'
+			VersionIndependentProgID = s 'AspEnv.AeRequest'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

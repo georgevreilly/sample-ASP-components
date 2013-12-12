@@ -1,0 +1,25 @@
+HKCR
+{
+	IISSample.Tracer.1 = s 'Tracer Class'
+	{
+		CLSID = s '{034E4AC1-2544-11D1-8AE3-00C0F00910F9}'
+	}
+	IISSample.Tracer = s 'Tracer Class'
+	{
+		CLSID = s '{034E4AC1-2544-11D1-8AE3-00C0F00910F9}'
+		CurVer = s 'IISSample.Tracer.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {034E4AC1-2544-11D1-8AE3-00C0F00910F9} = s 'Tracer Class'
+		{
+			ProgID = s 'IISSample.Tracer.1'
+			VersionIndependentProgID = s 'IISSample.Tracer'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+		}
+	}
+}

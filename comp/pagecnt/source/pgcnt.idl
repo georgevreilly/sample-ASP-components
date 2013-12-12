@@ -1,0 +1,48 @@
+// PgCnt.idl : IDL source for PgCnt.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (PgCnt.tlb) and marshalling code.
+
+    [
+        object,
+        uuid(4B0BAE82-567A-11D0-9607-444553540000),
+        dual,
+        helpstring("IPgCntObj Interface"),
+        pointer_default(unique),
+        oleautomation
+    ]
+    interface IPgCntObj : IDispatch
+    {
+        import "oaidl.idl";
+        
+        //Custom Component Methods
+        [id(3), helpstring("return the number of hits on a URL")]
+        HRESULT Hits([in,optional] BSTR bstrURL, [out,retval] LONG* plNumHits);
+
+        [id(4), helpstring("reset the number of hits on a URL")]
+        HRESULT Reset([in, optional] BSTR bstrURL);
+		[id(5), helpstring("method PageHit")] HRESULT PageHit([out,retval] LONG* plNumHits);
+    };
+
+
+
+[
+    uuid(4B0BAE80-567A-11D0-9607-444553540000),
+    version(1.0),
+    helpstring("IISSample Page Counter Object Library")
+]
+library PageCounter
+{
+    importlib("stdole32.tlb");
+
+    [
+        uuid(4B0BAE86-567A-11D0-9607-444553540000),
+        helpstring("PgCntObj Class")
+    ]
+    coclass CPgCntObj
+    {
+        [default] interface IPgCntObj;
+    };
+
+};

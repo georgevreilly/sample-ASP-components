@@ -1,0 +1,47 @@
+// ContRot.idl : IDL source for ContRot.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ContRot.tlb) and marshalling code.
+
+	[
+		object,
+		uuid(E7EFF394-2E8A-11D0-B69A-00C0F00AE35A),
+		dual,
+		helpstring("IContentRotator Interface"),
+		pointer_default(unique),
+		oleautomation
+	]
+	interface IContentRotator : IDispatch
+	{
+		import "oaidl.idl";
+
+		[id(3), helpstring("Get one random entry")]
+		HRESULT ChooseContent([in] BSTR bstrDataFile,
+							  [out, retval] BSTR* pbstrRetVal);
+
+		[id(4), helpstring("Get all entries")]
+		HRESULT GetAllContent([in] BSTR bstrDataFile);
+	};
+
+
+
+[
+	uuid(E7EFF392-2E8A-11D0-B69A-00C0F00AE35A),
+	version(1.0),
+	helpstring("IISSample Content Rotator Object Library")
+]
+library ContentRotator
+{
+	importlib("stdole32.tlb");
+
+	[
+		uuid(E7EFF398-2E8A-11D0-B69A-00C0F00AE35A),
+		helpstring("ContentRotator Class")
+	]
+	coclass CContentRotator
+	{
+		[default] interface IContentRotator;
+	};
+
+};

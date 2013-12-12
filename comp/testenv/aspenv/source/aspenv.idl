@@ -1,0 +1,111 @@
+// AspEnv.idl : IDL source for AspEnv.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (AspEnv.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(A0B6D56D-2F7D-11D1-8AF8-00C0F00910F9),
+		dual,
+		helpstring("IAeObjectContext Interface"),
+		pointer_default(unique)
+	]
+	interface IAeObjectContext : IDispatch
+	{
+	};
+	[
+		object,
+		uuid(A0B6D572-2F7D-11D1-8AF8-00C0F00910F9),
+		dual,
+		helpstring("IAeServer Interface"),
+		pointer_default(unique)
+	]
+	interface IAeServer : IDispatch
+	{
+	};
+	[
+		object,
+		uuid(A0B6D574-2F7D-11D1-8AF8-00C0F00910F9),
+		dual,
+		helpstring("IAeResponse Interface"),
+		pointer_default(unique)
+	]
+	interface IAeResponse : IDispatch
+	{
+	};
+//	[
+//		object,
+//		uuid(DB46CCC0-3915-11d1-8AFD-00C0F00910F9),
+//		dual,
+//		helpstring("IAeRequest Interface"),
+//		pointer_default(unique)
+//	]
+//	interface IAeRequest : IDispatch
+//	{
+//	};
+	[
+		object,
+		uuid(F0C1B3E5-35D3-11D1-8AFD-00C0F00910F9),
+		dual,
+		helpstring("IStringProp Interface"),
+		pointer_default(unique)
+	]
+	interface IStringProp : IDispatch
+	{
+		[propget, id(DISPID_VALUE), helpstring("property Value")] HRESULT Value([out, retval] BSTR *pVal);
+	};
+[
+	uuid(A0B6D560-2F7D-11D1-8AF8-00C0F00910F9),
+	version(1.0),
+	helpstring("AspEnv 1.0 Type Library")
+]
+library ASPENVLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(A0B6D56E-2F7D-11D1-8AF8-00C0F00910F9),
+		helpstring("AeObjectContext Class")
+	]
+	coclass AeObjectContext
+	{
+		[default] interface IAeObjectContext;
+	};
+	[
+		uuid(A0B6D573-2F7D-11D1-8AF8-00C0F00910F9),
+		helpstring("AeServer Class")
+	]
+	coclass AeServer
+	{
+		[default] interface IAeServer;
+	};
+	[
+		uuid(A0B6D575-2F7D-11D1-8AF8-00C0F00910F9),
+		helpstring("AeResponse Class")
+	]
+	coclass AeResponse
+	{
+		[default] interface IAeResponse;
+	};
+	[
+		uuid(F0C1B3E4-35D3-11D1-8AFD-00C0F00910F9),
+		helpstring("AeRequest Class")
+	]
+	coclass AeRequest
+	{
+		[default] interface IDispatch;
+	};
+	[
+		uuid(F0C1B3E6-35D3-11D1-8AFD-00C0F00910F9),
+		helpstring("StringProp Class")
+	]
+	coclass StringProp
+	{
+		[default] interface IStringProp;
+	};
+};

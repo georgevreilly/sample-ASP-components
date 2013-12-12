@@ -1,0 +1,27 @@
+// stdafx.cpp : source file that includes just the standard includes
+//  stdafx.pch will be the pre-compiled header
+//  stdafx.obj will contain the pre-compiled type information
+
+#include "stdafx.h"
+
+#ifdef _ATL_STATIC_REGISTRY
+#include <statreg.h>
+#include <statreg.cpp>
+#endif
+
+// hack to define asptlb.h GUIDs in one place
+#ifdef DEFINE_GUID
+#undef DEFINE_GUID
+#endif
+
+#define DEFINE_GUID(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
+        EXTERN_C const GUID name \
+                = { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }
+
+DEFINE_GUID(IID_IServer,0xD97A6DA0L,0xA867,0x11CF,0x83,0xAE,0x01,0xA0,0xC9,0x0C,0x2B,0xD8);
+DEFINE_GUID(IID_IResponse,0xD97A6DA0L,0xA864,0x11CF,0x83,0xBE,0x00,0xA0,0xC9,0x0C,0x2B,0xD8);
+DEFINE_GUID(IID_IApplicationObject,0xD97A6DA0L,0xA866,0x11CF,0x83,0xAE,0x10,0xA0,0xC9,0x0C,0x2B,0xD8);
+DEFINE_GUID(IID_ISessionObject,0xD97A6DA0L,0xA865,0x11CF,0x83,0xAF,0x00,0xA0,0xC9,0x0C,0x2B,0xD8);
+DEFINE_GUID(IID_IRequest,0xD97A6DA0L,0xA861,0x11CF,0x93,0xAE,0x00,0xA0,0xC9,0x0C,0x2B,0xD8);
+
+#include <atlimpl.cpp>

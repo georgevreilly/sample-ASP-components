@@ -1,0 +1,40 @@
+     Text Formatter Server Component
+
+The motivation for the
+text
+formatter
+   component
+is to display text reasonably on browsers
+which
+do not
+wrap
+text by
+default.
+(such as Netscape.)
+Normally, on these browsers, long run-on fields are scrolled to the right.  This is likely to happen in the case with input text from databases.
+With the database scenario, it is also
+likely that the text will be formatted
+for a different column width than the
+width of the <TEXTAREA> element.
+
+The formatter has two properties:
+
+* Function About() As String
+
+--> returns a description of the component
+
+
+* Function WrapTextFromFile(strFile as String, cchWidth As Integer)
+
+--> Reads the contents of the text file "strFile" and formats the text
+    to fit in "cchWidth" columns.  The resultant text is output using the
+    "Response.Write" method.   Characters that can cause grief (such as
+    '>' and '<') are automatically encoded into their HTML escape codes
+    ('&lt;' and '&gt;') so as to make it legal for the text to contain the
+    literal string "</TEXTAREA>" with impunity.
+
++   If "strFile" does not exist, the component will throw an exception.
+
++   Single newlines between lines of text are discarded.  Multiple line
+    breaks are preserved, as a sequence of newlines is assumed to begin a
+    new paragraph.
